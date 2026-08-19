@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skate Buddy & Session Partner Intake Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #0a0c10;
+            --bg-card: #12161f;
+            --bg-section: #171d29;
+            --bg-input: #1e2638;
+            --border-color: #2a3449;
+            --border-hover: #eab308;
+            --accent-yellow: #facc15;
+            --accent-orange: #fb923c;
+            --accent-cyan: #38bdf8;
+            --accent-red: #f43f5e;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-dim: #64748b;
+            --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+            --font-marker: 'Permanent Marker', cursive, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-display);
+            background-color: var(--bg-body);
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(250, 204, 21, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
+                radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 24px 24px;
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 30px 16px;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            max-width: 860px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, #181f2f 0%, #0c1018 100%);
+            padding: 40px 30px 30px;
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner::before {
+            content: "SKATE OR DIE";
+            position: absolute;
+            top: -15px;
+            right: -10px;
+            font-size: 52px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.02);
+            letter-spacing: 4px;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .badge-tag {
+            display: inline-block;
+            background: rgba(250, 204, 21, 0.15);
+            color: var(--accent-yellow);
+            border: 1px solid rgba(250, 204, 21, 0.3);
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 6px 14px;
+            border-radius: 100px;
+            margin-bottom: 12px;
+        }
+
+        .hero-banner h1 {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .hero-banner p {
+            font-size: 15px;
+            color: var(--text-muted);
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 28px 32px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .section-number {
+            background: var(--accent-yellow);
+            color: #000;
+            font-weight: 800;
+            font-size: 13px;
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 17px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.75px;
+            color: #ffffff;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 7px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .label-hint {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-dim);
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 14px;
+            background-color: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--text-main);
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="email"]::placeholder,
+        input[type="tel"]::placeholder,
+        textarea::placeholder {
+            color: var(--text-dim);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.15);
+            background-color: #242e44;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        /* Pill / Tile Radio & Checkbox Buttons */
+        .option-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .option-card {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .option-card input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .option-card .card-content {
+            background-color: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 14px;
+            text-align: center;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            height: 100%;
+        }
+
+        .option-card .card-icon {
+            font-size: 20px;
+        }
+
+        .option-card .card-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .option-card .card-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .option-card:hover .card-content {
+            border-color: var(--border-hover);
+            background-color: #242e44;
+        }
+
+        .option-card input:checked + .card-content {
+            border-color: var(--accent-yellow);
+            background-color: rgba(250, 204, 21, 0.12);
+            box-shadow: 0 0 0 2px var(--accent-yellow);
+        }
+
+        .option-card input:checked + .card-content .card-title {
+            color: var(--accent-yellow);
+        }
+
+        /* Terrains Matrix */
+        .terrain-row {
+            background-color: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            transition: border-color 0.2s ease;
+        }
+
+        .terrain-row:hover {
+            border-color: rgba(250, 204, 21, 0.4);
+        }
+
+        .terrain-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .terrain-icon {
+            font-size: 24px;
+            width: 32px;
+            text-align: center;
+        }
+
+        .terrain-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .terrain-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .level-pills {
+            display: flex;
+            gap: 8px;
+        }
+
+        .level-pill {
+            cursor: pointer;
+        }
+
+        .level-pill input {
+            display: none;
+        }
+
+        .level-pill span {
+            display: block;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 6px;
+            background: #121722;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            transition: all 0.15s ease;
+        }
+
+        .level-pill input:checked + span {
+            background: var(--accent-yellow);
+            color: #000;
+            border-color: var(--accent-yellow);
+            font-weight: 800;
+        }
+
+        /* Checkbox Badges */
+        .checkbox-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .checkbox-badge {
+            cursor: pointer;
+        }
+
+        .checkbox-badge input {
+            display: none;
+        }
+
+        .checkbox-badge span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            font-size: 13px;
+            font-weight: 600;
+            background-color: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-badge:hover span {
+            border-color: var(--border-hover);
+            color: var(--text-main);
+        }
+
+        .checkbox-badge input:checked + span {
+            border-color: var(--accent-yellow);
+            background-color: rgba(250, 204, 21, 0.12);
+            color: var(--accent-yellow);
+            font-weight: 700;
+        }
+
+        /* File Upload Styling */
+        .upload-zone {
+            border: 2px dashed var(--border-color);
+            padding: 24px 16px;
+            text-align: center;
+            background-color: var(--bg-input);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .upload-zone:hover, .upload-zone.dragover {
+            border-color: var(--accent-yellow);
+            background-color: rgba(250, 204, 21, 0.05);
+        }
+
+        .upload-zone input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .upload-icon {
+            font-size: 28px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .upload-text {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .upload-subtext {
+            font-size: 11px;
+            color: var(--text-dim);
+            margin-top: 2px;
+        }
+
+        .file-info {
+            margin-top: 10px;
+            font-size: 12px;
+            color: var(--accent-yellow);
+            font-weight: 700;
+            display: none;
+            padding: 4px 8px;
+            background: rgba(250, 204, 21, 0.1);
+            border-radius: 4px;
+        }
+
+        /* Skater Oath Box */
+        .oath-box {
+            background: linear-gradient(135deg, rgba(250, 204, 21, 0.08) 0%, rgba(56, 189, 248, 0.04) 100%);
+            border: 1px dashed rgba(250, 204, 21, 0.4);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .oath-quote {
+            font-family: var(--font-marker);
+            font-size: 17px;
+            color: var(--accent-yellow);
+            letter-spacing: 0.5px;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .oath-rules {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Signature Canvas */
+        .signature-wrapper {
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background-color: #0c1018;
+            overflow: hidden;
+            position: relative;
+        }
+
+        canvas#signaturePad {
+            display: block;
+            width: 100%;
+            height: 160px;
+            cursor: crosshair;
+            touch-action: none;
+        }
+
+        .signature-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 14px;
+            background-color: var(--bg-input);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .signature-tip {
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        .btn-clear {
+            padding: 5px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            background-color: #2b364d;
+            color: var(--text-main);
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-clear:hover {
+            background-color: #3e4d6c;
+        }
+
+        /* Action Buttons */
+        .actions-bar {
+            padding: 28px 32px;
+            background-color: #0d111a;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+            color: #000;
+            font-weight: 800;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.75px;
+            padding: 14px 32px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(250, 204, 21, 0.35);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #fde047 0%, #facc15 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(250, 204, 21, 0.45);
+        }
+
+        .btn-secondary {
+            background-color: #242e44;
+            color: var(--text-main);
+            font-weight: 700;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 14px 24px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #313e5c;
+            border-color: var(--text-muted);
+        }
+
+        .btn-primary:active, .btn-secondary:active {
+            transform: scale(0.98);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            body {
+                padding: 12px 8px;
+            }
+
+            .hero-banner {
+                padding: 30px 18px;
+            }
+
+            .hero-banner h1 {
+                font-size: 24px;
+            }
+
+            .section {
+                padding: 20px 16px;
+            }
+
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .terrain-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .level-pills {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .level-pill {
+                flex: 1;
+                text-align: center;
+            }
+
+            .actions-bar {
+                padding: 20px 16px;
+                flex-direction: column;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Print Mode: Clean Skater Profile Card */
+        @media print {
+            body {
+                background: #fff;
+                color: #000;
+                padding: 0;
+            }
+
+            .form-container {
+                border: 1px solid #000;
+                box-shadow: none;
+                max-width: 100%;
+            }
+
+            .hero-banner {
+                background: #000;
+                color: #fff;
+            }
+
+            .section, .terrain-row, input, select, textarea, .option-card .card-content {
+                background: #fff !important;
+                color: #000 !important;
+                border-color: #ccc !important;
+            }
+
+            .actions-bar, .upload-zone, .signature-bar {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        
+        <!-- FORM HEADER -->
+        <div class="hero-banner">
+            <span class="badge-tag">🛹 Skate Crew Matcher</span>
+            <h1>Skate Buddy Intake Form</h1>
+            <p>Looking for a session partner to learn new tricks, hit street spots, and film clips? Fill out your skater profile below and let's roll.</p>
+        </div>
+
+        <form id="skateForm" action="https://formsubmit.co/vicgouveia@gmail.com" method="POST" enctype="multipart/form-data" onsubmit="prepareSignatureSubmit()">
+            
+            <!-- Hidden FormSubmit Settings -->
+            <input type="hidden" name="_subject" value="🛹 New Skate Buddy Profile Submission!">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+
+            <!-- 1. SKATER IDENTITY -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <div class="section-title">Skater Identity & Contact</div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="Full Name" placeholder="e.g., Tony Gouveia" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="skateTag">Street Tag / Nickname <span class="label-hint">(How the crew knows you)</span></label>
+                        <input type="text" id="skateTag" name="Street Nickname / Tag" placeholder="e.g., Speed Demon, T-Hawk">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone / WhatsApp</label>
+                        <input type="tel" id="phone" name="Phone / WhatsApp" placeholder="(555) 000-1234" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="_replyto" placeholder="skater@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="instagram">Instagram Handle</label>
+                        <input type="text" id="instagram" name="Instagram Handle" placeholder="@yourhandle">
+                    </div>
+                    <div class="form-group">
+                        <label for="cityNeighborhood">City & Local Neighborhood</label>
+                        <input type="text" id="cityNeighborhood" name="City and Neighborhood" placeholder="e.g., Brooklyn, NY / Downtown">
+                    </div>
+                </div>
+
+                <!-- Skater ID Photo Upload -->
+                <div class="form-group full-width" style="margin-top: 14px;">
+                    <label>Skater Profile Photo / Headshot <span class="label-hint">(Optional, JPG or PNG)</span></label>
+                    <div class="upload-zone" id="photoZone">
+                        <span class="upload-icon">📷</span>
+                        <div class="upload-text">Drag & drop your skater photo here, or click to browse</div>
+                        <div class="upload-subtext">JPG, PNG up to 10MB</div>
+                        <input type="file" id="skaterPhoto" name="Skater Profile Photo" accept="image/jpeg, image/png, image/webp" onchange="handleFileChange(this, 'photoInfo')">
+                        <div class="file-info" id="photoInfo"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. SETUP & STANCE -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <div class="section-title">Setup, Stance & Experience</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Riding Stance</label>
+                    <div class="option-grid">
+                        <label class="option-card">
+                            <input type="radio" name="Riding Stance" value="Regular (Left Foot Forward)" checked>
+                            <div class="card-content">
+                                <span class="card-icon">👟</span>
+                                <span class="card-title">Regular</span>
+                                <span class="card-sub">Left Foot Front</span>
+                            </div>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="Riding Stance" value="Goofy (Right Foot Forward)">
+                            <div class="card-content">
+                                <span class="card-icon">👟</span>
+                                <span class="card-title">Goofy</span>
+                                <span class="card-sub">Right Foot Front</span>
+                            </div>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="Riding Stance" value="Mongo / Ambidextrous">
+                            <div class="card-content">
+                                <span class="card-icon">⚡</span>
+                                <span class="card-title">Switch / Mongo</span>
+                                <span class="card-sub">Pushes both ways</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="grid-3" style="margin-top: 16px;">
+                    <div class="form-group">
+                        <label for="primarySetup">Primary Board Type</label>
+                        <select id="primarySetup" name="Primary Board Setup">
+                            <option value="Standard Street / Park Skateboard">Standard Street / Park Deck</option>
+                            <option value="Shaped / Pool & Bowl Deck">Shaped / Pool Deck (Old School)</option>
+                            <option value="Cruiser / Filmer Board">Cruiser / Soft Wheels</option>
+                            <option value="Surfskate (Carver / YOW)">Surfskate</option>
+                            <option value="Longboard / Downhill">Longboard / Downhill</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="deckWidth">Deck Width</label>
+                        <select id="deckWidth" name="Deck Width Size">
+                            <option value="7.75 - 8.0 inches">7.75" - 8.0" (Classic Tech)</option>
+                            <option value="8.125 - 8.25 inches" selected>8.125" - 8.25" (All-Around)</option>
+                            <option value="8.38 - 8.5 inches">8.38" - 8.5" (Modern Street)</option>
+                            <option value="8.75 inches +">8.75"+ (Bowl / Transition)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="wheelDuro">Wheel Type / Hardness</label>
+                        <select id="wheelDuro" name="Wheel Hardness">
+                            <option value="Hard Street / Park (99A - 104A)" selected>Hard (99A - 104A) - Street/Park</option>
+                            <option value="Hybrid / Rough Street (90A - 97A)">Medium (90A - 97A) - Crusty Pavement</option>
+                            <option value="Soft Cruiser (78A - 85A)">Soft (78A - 85A) - Smooth Cruise / Film</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid-2" style="margin-top: 12px;">
+                    <div class="form-group">
+                        <label for="experienceLevel">Experience Level</label>
+                        <select id="experienceLevel" name="Experience Level">
+                            <option value="Beginner (Learning to push & Ollies)">Beginner (Learning to push & Ollies)</option>
+                            <option value="Intermediate (Flips, Shuvits, Ledge Grinds)" selected>Intermediate (Flips, Shuvits, Ledge Grinds)</option>
+                            <option value="Advanced (Gaps, Rails & Technical Lines)">Advanced (Gaps, Rails & Technical Lines)</option>
+                            <option value="OG / Veteran / Master">OG / Veteran (Years in the game)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="yearsSkating">Years Skating</label>
+                        <input type="text" id="yearsSkating" name="Years Skating" placeholder="e.g., 3 years, 6 months, 10+ years">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. TERRAINS & SKILL MATRIX -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <div class="section-title">Terrains & Skill Strengths</div>
+                </div>
+
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+                    Where do you feel most at home? Rate your comfort level across different skate spots:
+                </p>
+
+                <!-- Street -->
+                <div class="terrain-row">
+                    <div class="terrain-info">
+                        <span class="terrain-icon">🏙️</span>
+                        <div>
+                            <div class="terrain-name">Street & Urban Spots</div>
+                            <div class="terrain-desc">Ledges, flat bars, gaps, curbs, stairs & banks</div>
+                        </div>
+                    </div>
+                    <div class="level-pills">
+                        <label class="level-pill"><input type="radio" name="Street Skill" value="Novice"><span>Novice</span></label>
+                        <label class="level-pill"><input type="radio" name="Street Skill" value="Decent" checked><span>Comfortable</span></label>
+                        <label class="level-pill"><input type="radio" name="Street Skill" value="Expert"><span>My Specialty</span></label>
+                    </div>
+                </div>
+
+                <!-- Skatepark Plaza -->
+                <div class="terrain-row">
+                    <div class="terrain-info">
+                        <span class="terrain-icon">🛹</span>
+                        <div>
+                            <div class="terrain-name">Skatepark Plaza</div>
+                            <div class="terrain-desc">Pyramids, hubbas, manual pads, euro-gaps</div>
+                        </div>
+                    </div>
+                    <div class="level-pills">
+                        <label class="level-pill"><input type="radio" name="Skatepark Plaza Skill" value="Novice"><span>Novice</span></label>
+                        <label class="level-pill"><input type="radio" name="Skatepark Plaza Skill" value="Decent" checked><span>Comfortable</span></label>
+                        <label class="level-pill"><input type="radio" name="Skatepark Plaza Skill" value="Expert"><span>My Specialty</span></label>
+                    </div>
+                </div>
+
+                <!-- Bowl & Transition -->
+                <div class="terrain-row">
+                    <div class="terrain-info">
+                        <span class="terrain-icon">🥣</span>
+                        <div>
+                            <div class="terrain-name">Bowl & Pool</div>
+                            <div class="terrain-desc">Carving, deep ends, pool coping, tile grind</div>
+                        </div>
+                    </div>
+                    <div class="level-pills">
+                        <label class="level-pill"><input type="radio" name="Bowl Skill" value="Novice" checked><span>Novice</span></label>
+                        <label class="level-pill"><input type="radio" name="Bowl Skill" value="Decent"><span>Comfortable</span></label>
+                        <label class="level-pill"><input type="radio" name="Bowl Skill" value="Expert"><span>My Specialty</span></label>
+                    </div>
+                </div>
+
+                <!-- Halfpipe & Miniramp -->
+                <div class="terrain-row">
+                    <div class="terrain-info">
+                        <span class="terrain-icon">🛹</span>
+                        <div>
+                            <div class="terrain-name">Miniramp & Halfpipe (Vert)</div>
+                            <div class="terrain-desc">Rock to fakie, disaster, axle stalls, airs</div>
+                        </div>
+                    </div>
+                    <div class="level-pills">
+                        <label class="level-pill"><input type="radio" name="Miniramp/Vert Skill" value="Novice"><span>Novice</span></label>
+                        <label class="level-pill"><input type="radio" name="Miniramp/Vert Skill" value="Decent" checked><span>Comfortable</span></label>
+                        <label class="level-pill"><input type="radio" name="Miniramp/Vert Skill" value="Expert"><span>My Specialty</span></label>
+                    </div>
+                </div>
+
+                <!-- Flatground Tech -->
+                <div class="terrain-row">
+                    <div class="terrain-info">
+                        <span class="terrain-icon">🎯</span>
+                        <div>
+                            <div class="terrain-name">Flatground & Freestyle Tech</div>
+                            <div class="terrain-desc">Game of S.K.A.T.E., flatground flip combos, manuals</div>
+                        </div>
+                    </div>
+                    <div class="level-pills">
+                        <label class="level-pill"><input type="radio" name="Flatground Skill" value="Novice"><span>Novice</span></label>
+                        <label class="level-pill"><input type="radio" name="Flatground Skill" value="Decent"><span>Comfortable</span></label>
+                        <label class="level-pill"><input type="radio" name="Flatground Skill" value="Expert" checked><span>My Specialty</span></label>
+                    </div>
+                </div>
+
+                <!-- Downhill / Hill Bomb -->
+                <div class="terrain-row">
+                    <div class="terrain-info">
+                        <span class="terrain-icon">⛰️</span>
+                        <div>
+                            <div class="terrain-name">Downhill & Hill Bombing</div>
+                            <div class="terrain-desc">Powerslides, high-speed street cruising, hill bombs</div>
+                        </div>
+                    </div>
+                    <div class="level-pills">
+                        <label class="level-pill"><input type="radio" name="Downhill Skill" value="Novice" checked><span>Novice</span></label>
+                        <label class="level-pill"><input type="radio" name="Downhill Skill" value="Decent"><span>Comfortable</span></label>
+                        <label class="level-pill"><input type="radio" name="Downhill Skill" value="Expert"><span>My Specialty</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. TRICKS & PROGRESSION -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <div class="section-title">Tricks & Progression</div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="signatureTrick">⭐ Signature / Go-To Trick <span class="label-hint">(The one you never miss)</span></label>
+                        <input type="text" id="signatureTrick" name="Signature / Go-To Trick" placeholder="e.g., BS Boardslide, Varial Heelflip, Frontside Air" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="learningTrick">🔥 Trick in Progress <span class="label-hint">(Current battle you're unlocking)</span></label>
+                        <input type="text" id="learningTrick" name="Trick in Progress (Currently Learning)" placeholder="e.g., Tre Flip, FS Crooked Grind, Hardflip" required>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 14px;">
+                    <label for="dreamLine">🎯 Dream Combo / Ideal Line <span class="label-hint">(Your fantasy 3-trick line)</span></label>
+                    <textarea id="dreamLine" name="Dream Combo / Ideal Line" placeholder="e.g., Half-cab flip onto manual pad, kickflip out, then BS 50-50 down the 4-stair hubba"></textarea>
+                </div>
+
+                <div class="grid-2" style="margin-top: 14px;">
+                    <div class="form-group">
+                        <label for="videoLink">📹 Video Part / Clip Link <span class="label-hint">(Insta Reel, YouTube, TikTok)</span></label>
+                        <input type="text" id="videoLink" name="Video Clip Link" placeholder="https://instagram.com/reel/...">
+                    </div>
+                    <div class="form-group">
+                        <label>📎 Attach Clip File <span class="label-hint">(Optional short MP4/MOV)</span></label>
+                        <div class="upload-zone" id="clipZone" style="padding: 12px 14px;">
+                            <span class="upload-icon" style="font-size: 20px;">🎬</span>
+                            <span class="upload-text" style="font-size: 12px;">Choose video clip file</span>
+                            <input type="file" id="clipFile" name="Attached Skate Clip" accept="video/mp4, video/quicktime, image/*" onchange="handleFileChange(this, 'clipInfo')">
+                            <div class="file-info" id="clipInfo"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. SPOTS & SESSION AVAILABILITY -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <div class="section-title">Favorite Spots & Availability</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="favoriteSpots">📍 Top Favorite Skateparks & Local Street Spots</label>
+                    <input type="text" id="favoriteSpots" name="Favorite Spots & Parks" placeholder="e.g., LES Coleman Skatepark, Downtown Plaza, Local High School Ledges" required>
+                </div>
+
+                <div class="form-group" style="margin-top: 16px;">
+                    <label>⏰ When are you down to skate? <span class="label-hint">(Select all that apply)</span></label>
+                    <div class="checkbox-badges">
+                        <label class="checkbox-badge">
+                            <input type="checkbox" name="Availability[]" value="Weekday Mornings (Early Birds)">
+                            <span>🌅 Weekday Mornings (Empty Parks)</span>
+                        </label>
+                        <label class="checkbox-badge">
+                            <input type="checkbox" name="Availability[]" value="Weekday Afternoons / After Work" checked>
+                            <span>🌆 Weekday Afternoons / Sunset</span>
+                        </label>
+                        <label class="checkbox-badge">
+                            <input type="checkbox" name="Availability[]" value="Weekend All-Day Sessions" checked>
+                            <span>🛹 Weekend All-Day Missions</span>
+                        </label>
+                        <label class="checkbox-badge">
+                            <input type="checkbox" name="Availability[]" value="Night Street Missions">
+                            <span>🌙 Night Street Missions (Lights On)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="grid-2" style="margin-top: 16px;">
+                    <div class="form-group">
+                        <label>🚗 Spot Hunting Wheels?</label>
+                        <select name="Transportation Status">
+                            <option value="Got a car / Ready for spot road trips" selected>Got a car / Down for road trips</option>
+                            <option value="Public transit & pushing on the board">Subway, bus & pushing the board</option>
+                            <option value="Need to carpool with crew">Looking to carpool with the crew</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>📸 Got Camera / Filming Gear?</label>
+                        <select name="Filming Gear Status">
+                            <option value="Phone + Fisheye Lens" selected>Phone with Fisheye / Wide Lens</option>
+                            <option value="DSLR / Mirrorless Camera">DSLR / 4K Mirrorless Camera</option>
+                            <option value="Vintage VX1000 / Camcorder">Classic VX / Hi8 Camcorder</option>
+                            <option value="No gear, just riding">No gear, just here to skate</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. SESSION VIBE & BUDDY PREFERENCES -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <div class="section-title">Session Vibe & Skate Buddy Goals</div>
+                </div>
+
+                <div class="form-group">
+                    <label>🎯 What are you looking for in a Skate Partner?</label>
+                    <div class="checkbox-badges">
+                        <label class="checkbox-badge">
+                            <input type="checkbox" name="Looking For In Partner[]" value="Progression Buddy (Hyping each other up)" checked>
+                            <span>🔥 Progression Buddy (Pushing each other)</span>
+                        </label>
+                        <label class="checkbox-badge">
+                            <input type="checkbox" name="Looking For In Partner[]" value="Filmer / Clip Maker" checked>
+                            <span>🎥 Trading Clips & Filming Lines</span>
+                        </label>
+                        <label class="checkbox-badge">
+                            <input type="checkbox" name="Looking For In Partner[]" value="Casual Cruiser & Good Laughs">
+                            <span>🤙 Chill Cruise & Good Vibes (Zero Pressure)</span>
+                        </label>
+                        <label class="checkbox-badge">
+                            <input type="checkbox" name="Looking For In Partner[]" value="Spot Hunter & Explorer">
+                            <span>🗺️ Spot Hunting & Exploring New Cities</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 16px;">
+                    <label for="musicVibe">🎵 Session Soundtrack / Music Vibe</label>
+                    <div class="checkbox-badges">
+                        <label class="checkbox-badge"><input type="checkbox" name="Session Music[]" value="90s Boom-Bap Hip Hop" checked><span>🎧 90s Boom-Bap Hip Hop</span></label>
+                        <label class="checkbox-badge"><input type="checkbox" name="Session Music[]" value="Skate Punk & Hardcore" checked><span>🎸 Skate Punk & Hardcore</span></label>
+                        <label class="checkbox-badge"><input type="checkbox" name="Session Music[]" value="Indie & Alt Rock"><span>⚡ Indie & Alt Rock</span></label>
+                        <label class="checkbox-badge"><input type="checkbox" name="Session Music[]" value="Trap & Phonk"><span>🔥 Trap & Phonk</span></label>
+                        <label class="checkbox-badge"><input type="checkbox" name="Session Music[]" value="Reggae & Dub"><span>🌴 Reggae & Dub</span></label>
+                        <label class="checkbox-badge"><input type="checkbox" name="Session Music[]" value="Natural Skate Sounds"><span>🛹 Just the sound of urethane & concrete</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. SKATER'S OATH & DIGITAL SIGNATURE -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <div class="section-title">The Skater's Oath & Digital Tag</div>
+                </div>
+
+                <div class="oath-box">
+                    <div class="oath-quote">"If you bail, get up. If your partner lands the hammer, slap your tail loud and proud!"</div>
+                    <div class="oath-rules">Rule 1: Leave the spot clean. &nbsp;|&nbsp; Rule 2: Respect fellow riders & locals. &nbsp;|&nbsp; Rule 3: Never quit on a battle.</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Sign or Draw Your Street Tag Below:</label>
+                    <div class="signature-wrapper">
+                        <canvas id="signaturePad"></canvas>
+                        <div class="signature-bar">
+                            <span class="signature-tip">Draw with finger, stylus or mouse</span>
+                            <button type="button" class="btn-clear" onclick="clearSignature()">Clear Canvas</button>
+                        </div>
+                    </div>
+                    <input type="hidden" id="signatureData" name="Skater Digital Signature Tag">
+                </div>
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <div class="actions-bar">
+                <button type="submit" class="btn-primary">
+                    <span>🛹</span> Submit Skate Buddy Profile
+                </button>
+                <button type="button" class="btn-secondary" onclick="window.print()">
+                    <span>📄</span> Print / Save Skater Card
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+        // File Drag & Drop Enhancements
+        ['photoZone', 'clipZone'].forEach(id => {
+            const zone = document.getElementById(id);
+            if (!zone) return;
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                zone.addEventListener(eventName, (e) => {
+                    e.preventDefault();
+                    zone.classList.add('dragover');
+                }, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                zone.addEventListener(eventName, (e) => {
+                    e.preventDefault();
+                    zone.classList.remove('dragover');
+                }, false);
+            });
+        });
+
+        function handleFileChange(input, infoId) {
+            const infoDiv = document.getElementById(infoId);
+            if (input.files && input.files.length > 0) {
+                const file = input.files[0];
+                infoDiv.textContent = `Attached: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+                infoDiv.style.display = 'inline-block';
+            } else {
+                infoDiv.style.display = 'none';
+                infoDiv.textContent = '';
+            }
+        }
+
+        // Digital Signature Canvas Logic
+        const canvas = document.getElementById('signaturePad');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+        let hasDrawn = false;
+
+        function resizeCanvas() {
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+            ctx.strokeStyle = '#facc15';
+            ctx.lineWidth = 2.5;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+        }
+
+        window.addEventListener('load', resizeCanvas);
+        window.addEventListener('resize', resizeCanvas);
+
+        function getMousePos(e) {
+            const rect = canvas.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            return {
+                x: clientX - rect.left,
+                y: clientY - rect.top
+            };
+        }
+
+        function startDrawing(e) {
+            isDrawing = true;
+            hasDrawn = true;
+            const pos = getMousePos(e);
+            ctx.beginPath();
+            ctx.moveTo(pos.x, pos.y);
+            if (e.cancelable) e.preventDefault();
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            const pos = getMousePos(e);
+            ctx.lineTo(pos.x, pos.y);
+            ctx.stroke();
+            if (e.cancelable) e.preventDefault();
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        window.addEventListener('mouseup', stopDrawing);
+
+        canvas.addEventListener('touchstart', startDrawing, { passive: false });
+        canvas.addEventListener('touchmove', draw, { passive: false });
+        window.addEventListener('touchend', stopDrawing);
+
+        function clearSignature() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            hasDrawn = false;
+            document.getElementById('signatureData').value = "";
+        }
+
+        function prepareSignatureSubmit() {
+            if (hasDrawn) {
+                document.getElementById('signatureData').value = canvas.toDataURL();
+            }
+        }
+    </script>
+</body>
+</html>
